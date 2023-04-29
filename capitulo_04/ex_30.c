@@ -3,47 +3,50 @@
 
 int main(){
 
-    int vetor1[10], vetor2[10];
-    int qtd_elemento_comum = 0;
+    int vetor1[10], vetor2[10], vetorInterseccao[10];
+    int tamanhoDaInterseccao = 0;
 
     for(int i = 0; i < 10; i++){
-        printf("Digite o %io do vetor 1: ", (i+1));
+        printf("Digite o %io valor do vetor 1: ", (i+1));
         scanf("%i", &vetor1[i]);
     }
 
     printf("\n");
 
     for(int i = 0; i < 10; i++){
-        printf("Digite o %io do vetor 2: ", (i+1));
+        printf("Digite o %io valor do vetor 2: ", (i+1));
         scanf("%i", &vetor2[i]);
     }
-
+    
     for(int i = 0, j = 0; i < 10  && j < 10; i++){
-        if(vetor1[i] == vetor2[j]){
-            qtd_elemento_comum++;
-            j++;
-            i = 0;
+        for(int j = 0; j < 10; j++){
+            if(vetor1[i] == vetor2[j]){
+                vetorInterseccao[tamanhoDaInterseccao] = vetor1[i];
+                tamanhoDaInterseccao++;
+                break;
+            }
         }
     }
 
-    printf("\n");
 
-    int vetorInterseccao[qtd_elemento_comum];
+    int i, j, n = 0, interseccaoNaoRepetido[tamanhoDaInterseccao];
 
-    for(int i = 0, j = 0, k = 0; i < 10  && j < 10; i++){
-        if(vetor1[i] == vetor2[j]){
-            vetorInterseccao[k] == vetor1[i];
-            j++;
-            i = 0;
-            k++;
+    printf("\nVetor Interseccao: ");
+    for( i = 0; i < tamanhoDaInterseccao; i++){
+        for( j = 0; j < n; j++){
+            if(vetorInterseccao[i] == interseccaoNaoRepetido[j]){
+                break;
+            }
+        }
+        if(j == n){
+            interseccaoNaoRepetido[n] = vetorInterseccao[i];
+            n++;
         }
     }
 
-    printf("\n\nElementos em comum entre o vetor 1 e o vetor 2\n");
-
-    for(int i = 0; i < qtd_elemento_comum; i++){
-        printf("%i\n", vetorInterseccao[i]);
+    for(int i = 0; i < n; i++){
+        printf("%i ", interseccaoNaoRepetido[i]);
     }
-
+    
     return 0;
 }
